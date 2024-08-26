@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- Calculator -->
+    <main>
+        <table>
+            <tr>
+                <td colspan="4"><input id="in" value="0" type="text"></td>
+                
+            </tr>
+            <tr>
+                <td  colspan="2"><button class="ac" onclick="clean()">AC</button></td>
+                <td class="div"><button onclick= 'dis("%")'>%</button></td>
+                <td><button onclick='dis("/")'>/</button></td>    
+            </tr>
+            <tr>
+                <td><button onclick="dis('7')">7</button></td>
+                <td><button onclick="dis('8')">8</button></td>
+                <td><button onclick="dis('9')">9</button></td>
+                <td><button onclick="dis('*')">*</button></td>    
+            </tr>
+            <tr>
+                <td><button onclick="dis('4')">4</button></td>
+                <td><button onclick="dis('5')">5</button></td>
+                <td><button onclick="dis('6')">6</button></td>
+                <td><button onclick="dis('-')">-</button></td>    
+            </tr>
+            <tr>
+                <td><button onclick="dis('1')">1</button></td>
+                <td><button onclick="dis('2')">2</button></td>
+                <td><button onclick="dis('3')">3</button></td>
+                <td rowspan="2"><button class="pl" onclick="dis('+')">+</button></td>    
+            </tr>
+            <tr>
+                <td><button onclick='dis(".")'>.</button></td>
+                <td><button onclick="dis('0')">0</button></td>
+                <td colspan="3"><button onclick="equal()">=</button></td>
+                   <td ></td>
+            </tr>
+        </table>
+    </main>
+
+    <!-- Carousel -->
+    <div class="cor">
+        <button onclick="mini()" class="bt"><</button>
+        <img src="" id="image" alt="">
+        <button onclick="plus()" class="bt">></button>
+    </div>
+
+    <!-- Form Validation -->
+    <div class="all">
+        <div class="div1">
+        <a href="login.html" class="a1">Log In</a>
+        <a href="sign.html" class="a1">Sign Up</a> 
+    </div>
+         <form onsubmit="ab()">
+            <label for="n">Full Name :</label><br>
+            <input class="in"  type="text" name="n" id="user"><br>
+            <span id="s1">*Check the Name</span><br>
+            <label for="">Email :</label><br>
+            <input class="in" type="text" name="" id="em"><br>
+            <span id="s2">*Invaild Email address</span><br>
+            <label for="">Password :</label><br>
+            <input class="in" type="password" name="" id="pw">
+            <i id="close" class="fa fa-unlock-alt" aria-hidden="true"></i>
+            <i id="open" class="fa fa-unlock" aria-hidden="true"></i>
+            <br>
+            <span id="s3">*Input Password and Submit [7 to 15 characters which contain at least one numeric digit and a special character]</span><br>
+            <label for="">Confirm Password :</label><br>
+            <input class="in" type="password" name="" id="conpass">
+            <i id="c" class="fa fa-unlock-alt" aria-hidden="true"></i>
+            <i id="o" class="fa fa-unlock" aria-hidden="true"></i>
+            <br>
+            <span id="s4">*Check the befor password</span><br>
+
+            <button class="sin" type="submit">Sign Up</button>
+         </form>
+    </div>
+
+    <!-- Digital clock -->
+    <div class="container">
+        <span id="hour"></span><span class="di">:</span>
+        <span id="minutes"></span><span class="di">:</span>
+        <span id="second"></span>
+        <span id="ampm"></span>
+        
+    </div>
+
+    <!-- To Do list  -->
+    <div id="myDIV" class="header">
+        <h2>My To Do List</h2>
+        <input type="text" id="myInput" placeholder="Title...">
+        <span onclick="newElement()" class="addBtn">Add</span>
+      </div>
+      
+      <ul id="myUL">
+        <li>Wake up early</li>
+        <li class="checked">Pay bills</li>
+        <li>Get Together</li>
+        <li>Go to store</li>
+        <li>Read a book</li>
+        <li>Clean Home</li>
+      </ul>
+
+</body>
+<script>
+    // Colculaor
+    function dis(x){
+        if( document.getElementById("in").value ==0){
+            document.getElementById("in").value ="";
+            document.getElementById("in").value =x;
+        }else{
+            document.getElementById("in").value +=x;
+        }
+
+    }
+    function equal(){
+        var a=document.getElementById("in").value;
+        var y = eval(a)
+        document.getElementById("in").value = y;
+    }
+    
+    function clean(){
+        document.getElementById("in").value =0
+    }
+   
+    
+    // Carousel
+
+    arr=["i1.avif","i2.jpg","i3.avif","i4.webp","i5.webp"]
+       x=0
+       document.getElementById("image").src=arr[x]
+
+       mini = ()=>{
+           x-=1
+         if(x<0){
+            x=4
+         }
+           document.getElementById("image").src=arr[x]
+       }
+       
+       plus = ()=>{
+        x+=1
+       if(x>4){
+        x=0
+       }
+        document.getElementById("image").src=arr[x]
+    }
+    setInterval(plus,3000)
+    
+    // Form Validation
+    function ab(){
+      event.preventDefault()
+      // name Validation
+      var name = document.getElementById("user").value 
+
+const re = /^[a-zA-Z ]+$/;
+
+if(name.match(re)){
+    document.getElementById("s1").style.display="none"
+}
+else{
+    document.getElementById("s1").style.display="inline-block"
+}
+
+       
+         // email validation
+         var em=document.getElementById("em").value
+
+const reg =   /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+if(em.match(reg)){
+document.getElementById("s2").style.display="none"
+}else{
+document.getElementById("s2").style.display="inline-block"
+}
+ // password 
+ const regu = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
+     var pw = document.getElementById("pw").value
+     if(pw.match(regu)){
+        document.getElementById("s3").style.display="none"
+     }else{
+        document.getElementById("s3").style.display="inline-block"
+     }
+    
+    //  confirm pw
+
+    var conpass=document.getElementById("conpass").value
+    if(conpass===pw){
+        document.getElementById("s4").style.display="none"
+    }
+    else{
+        document.getElementById("s4").style.display="inline-block"
+    }
+    }
+    var clo=document.getElementById("close")
+        var ope=document.getElementById("open")
+
+        clo.addEventListener("click",function(){
+         clo.style.display="none"
+         ope.style.display="inline"
+         document.getElementById("pw").type="text"
+        })
+
+        ope.addEventListener("click",function(){
+            ope.style.display="none"
+            clo.style.display="inline"
+            document.getElementById("pw").type = "password"
+        })
+
+
+        var c=document.getElementById("c")
+        var o=document.getElementById("o")
+
+        c.addEventListener("click",function(){
+         c.style.display="none"
+         o.style.display="inline"
+         document.getElementById("conpass").type="text"
+        })
+
+        o.addEventListener("click",function(){
+            o.style.display="none"
+            c.style.display="inline"
+            document.getElementById("conpass").type = "password"
+        })
+    AOS.init();
+   
+    // Digital clock 
+    function time(){
+        document.getElementById("ampm").innerHTML
+        var datetime = new Date();
+        var hr = datetime.getHours();
+        var min = datetime.getMinutes();
+        var sec = datetime.getSeconds();
+        if(hr>12){
+            hr=hr-12
+            ampm.innerHTML="am"
+        } 
+        else{
+            ampm.innerHTML='pm'
+        }
+
+        document.getElementById("hour").innerHTML=zero(hr)
+        document.getElementById("minutes").innerHTML=zero(min)
+        document.getElementById("second").innerHTML=zero(sec)
+    }
+    function zero(num){
+    return num<10?"0"+num:num
+    }
+    setInterval(time,1000)
+    
+    // To Do list 
+    
+   // Create a "close" button and append it to each list item
+var myNodelist = document.getElementsByTagName("LI");
+var i;
+for (i = 0; i < myNodelist.length; i++) {
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  myNodelist[i].appendChild(span);
+}
+
+// Click on a close button to hide the current list item
+var close = document.getElementsByClassName("close");
+var i;
+for (i = 0; i < close.length; i++) {
+  close[i].onclick = function() {
+    var div = this.parentElement;
+    div.style.display = "none";
+  }
+}
+
+// Add a "checked" symbol when clicking on a list item
+var list = document.querySelector('ul');
+list.addEventListener('click', function(ev) {
+  if (ev.target.tagName === 'LI') {
+    ev.target.classList.toggle('checked');
+  }
+}, false);
+
+// Create a new list item when clicking on the "Add" button
+function newElement() {
+  var li = document.createElement("li");
+  var inputValue = document.getElementById("myInput").value;
+  var t = document.createTextNode(inputValue);
+  li.appendChild(t);
+  if (inputValue === '') {
+    alert("You must write something!");
+  } else {
+    document.getElementById("myUL").appendChild(li);
+  }
+  document.getElementById("myInput").value = "";
+
+  var span = document.createElement("SPAN");
+  var txt = document.createTextNode("\u00D7");
+  span.className = "close";
+  span.appendChild(txt);
+  li.appendChild(span);
+
+  for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+      var div = this.parentElement;
+      div.style.display = "none";
+    }
+  }
+}
+
+
+
+
+    
+    </script>
+</html>
