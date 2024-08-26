@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+     <style>
+       
+        .all{
+            width: 350px;
+            border-radius: 20px;
+          padding: 30px 100px;
+          margin-left: 350px;
+            background-color: rgba(240, 248, 255, 0.123);
+            
+        }
+        body{
+            background-color: rgb(2, 47, 77);
+        }
+         .a1{
+            color: antiquewhite;
+            text-decoration: none;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 30px;
+            padding: 30px;
+            /* border: 1px solid; */
+            
+         }
+         .a1:hover{
+            color: rgba(236, 241, 245, 0.644);
+         }
+         .a1:active{
+            color: aliceblue;
+            text-decoration: underline;
+            transition: ltr;
+         }
+
+         form{
+            margin-top: 30px;
+            margin-left: 25px;
+         }
+         label{
+            font-size: 16px;
+              color: aliceblue;
+            font-family: Arial, Helvetica, sans-serif;
+         }
+         input{
+            background-color: rgba(225, 230, 235, 0.432);
+            margin-top: 10px;
+            margin-bottom: 20px;
+            width: 250px;
+            border: none;
+            border-radius: 10px;
+            height: 30px;
+            font-size: 15px;
+            color:black;
+         }
+         button{
+            padding: 10px 100px;
+            border-radius: 10px;
+            margin-top: 20px;
+            border: none;
+            background-color: rgba(0, 225, 255, 0.24);
+            color: wheat;
+            font-size: 15px;
+            font-family: Arial, Helvetica, sans-serif;
+            font-weight: bold;
+         }
+         button:hover{
+            cursor: pointer;
+            opacity: 0.5;
+         }
+         span{
+            display: none;
+            color: rgba(119, 2, 2, 0.87);
+         }
+         .div1{
+            margin: 0px;
+         }
+         #open{
+                display: none;
+            }
+            #o{
+                display: none;
+            }
+     </style>
+
+</head>
+<body>
+    <div class="all">
+        <div class="div1">
+        <a href="login.html" class="a1">Log In</a>
+        <a href="sign.html" class="a1">Sign Up</a> 
+    </div>
+         <form onsubmit="ab()">
+            <label for="n">Full Name :</label><br>
+            <input type="text" name="n" id="user"><br>
+            <span id="s1">*Check the Name</span><br>
+            <label for="">Email :</label><br>
+            <input type="text" name="" id="em"><br>
+            <span id="s2">*Invaild Email address</span><br>
+            <label for="">Password :</label><br>
+            <input type="password" name="" id="pw">
+            <i id="close" class="fa fa-unlock-alt" aria-hidden="true"></i>
+            <i id="open" class="fa fa-unlock" aria-hidden="true"></i>
+            <br>
+            <span id="s3">*Input Password and Submit [7 to 15 characters which contain at least one numeric digit and a special character]</span><br>
+            <label for="">Confirm Password :</label><br>
+            <input type="password" name="" id="conpass">
+            <i id="c" class="fa fa-unlock-alt" aria-hidden="true"></i>
+            <i id="o" class="fa fa-unlock" aria-hidden="true"></i>
+            <br>
+            <span id="s4">*Check the befor password</span><br>
+
+            <button type="submit">Sign Up</button>
+         </form>
+    </div>
+</body>
+<script>
+    function ab(){
+      event.preventDefault()
+      // name Validation
+      var name = document.getElementById("user").value 
+
+const re = /^[a-zA-Z ]+$/;
+
+if(name.match(re)){
+    document.getElementById("s1").style.display="none"
+}
+else{
+    document.getElementById("s1").style.display="inline-block"
+}
+
+       
+         // email validation
+         var em=document.getElementById("em").value
+
+const reg =   /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+if(em.match(reg)){
+document.getElementById("s2").style.display="none"
+}else{
+document.getElementById("s2").style.display="inline-block"
+}
+ // password 
+ const regu = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{7,15}$/;
+     var pw = document.getElementById("pw").value
+     if(pw.match(regu)){
+        document.getElementById("s3").style.display="none"
+     }else{
+        document.getElementById("s3").style.display="inline-block"
+     }
+    
+    //  confirm pw
+
+    var conpass=document.getElementById("conpass").value
+    if(conpass===pw){
+        document.getElementById("s4").style.display="none"
+    }
+    else{
+        document.getElementById("s4").style.display="inline-block"
+    }
+    }
+    var clo=document.getElementById("close")
+        var ope=document.getElementById("open")
+
+        clo.addEventListener("click",function(){
+         clo.style.display="none"
+         ope.style.display="inline"
+         document.getElementById("pw").type="text"
+        })
+
+        ope.addEventListener("click",function(){
+            ope.style.display="none"
+            clo.style.display="inline"
+            document.getElementById("pw").type = "password"
+        })
+
+
+        var c=document.getElementById("c")
+        var o=document.getElementById("o")
+
+        c.addEventListener("click",function(){
+         c.style.display="none"
+         o.style.display="inline"
+         document.getElementById("conpass").type="text"
+        })
+
+        o.addEventListener("click",function(){
+            o.style.display="none"
+            c.style.display="inline"
+            document.getElementById("conpass").type = "password"
+        })
+    AOS.init();
+</script>
+</html>
